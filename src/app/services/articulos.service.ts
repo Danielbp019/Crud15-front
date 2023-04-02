@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IArticulos } from '../articulos/articulos';
+import { IArticulo } from '../articulos/articulos';
 
 @Injectable({
   providedIn: 'root'
@@ -12,20 +12,20 @@ export class ArticulosService {
 
   constructor(private http: HttpClient) { }
 
-  list(): Observable<IArticulos[]> {
-    return this.http.get<IArticulos[]>(this._url);
+  list(): Observable<IArticulo[]> {
+    return this.http.get<IArticulo[]>(this._url);
   }
 
-  add(articulos: IArticulos): Observable<IArticulos> {
-    return this.http.post<IArticulos>(this._url, articulos);
+  add(articulo: IArticulo): Observable<IArticulo> {
+    return this.http.post<IArticulo>(this._url, articulo);
   }
 
-  update(articulos: IArticulos): Observable<IArticulos> {
-    return this.http.put<IArticulos>(`${this._url}/${articulos.id}`, articulos);
+  update(articulo: IArticulo): Observable<IArticulo> {
+    return this.http.put<IArticulo>(`${this._url}/${articulo.id}`, articulo);
   }
 
-  delete(articulos: IArticulos): Observable<boolean> {
-    return this.http.delete<boolean>(`${this._url}/${articulos.id}`);
+  delete(articulo: IArticulo): Observable<boolean> {
+    return this.http.delete<boolean>(`${this._url}/${articulo.id}`);
   }
 
 }

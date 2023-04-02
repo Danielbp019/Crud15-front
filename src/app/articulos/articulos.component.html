@@ -1,20 +1,65 @@
-<table class="table table-hover">
-  <thead class="thead-dark">
-    <tr>
+<br>
+<div style="text-align: center;">
+  <button type="button" class="btn btn-primary" (click)="openModal(template)">Nuevo</button>
+</div>
+<br>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr class="table-dark text-center">
       <th scope="col">#</th>
+      <th scope="col">ID</th>
       <th scope="col">Titulo</th>
       <th scope="col">Cuerpo</th>
       <th scope="col">Autor</th>
-      <th scope="col">accion</th>
+      <th colspan="2" scope="colgroup">Accion</th>
     </tr>
   </thead>
-  <tbody class="table-group-divider">
-    <tr *ngFor="let articulos of articulo; index as i">
+  <tbody class="table-group-divider text-center">
+    <tr *ngFor="let articulo of articulos; index as i">
       <th scope="row">{{ i+1 }}</th>
-      <td>{{articulos.titulo}}</td>
-      <td>{{articulos.cuerpo}}</td>
-      <td>{{articulos.autor}}</td>
-      <td></td>
+      <th>{{ articulo.id }}</th>
+      <td>{{articulo.titulo}}</td>
+      <td>{{articulo.cuerpo}}</td>
+      <td>{{articulo.autor}}</td>
+      <td>
+        <button type="button" class="btn btn-info" (click)="openModal(template,articulo)">Editar</button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger" (click)="delete(articulo)">Borrar</button>
+      </td>
     </tr>
   </tbody>
 </table>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{modalTitle}}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Titulo</label>
+      <input type="text" class="form-control" placeholder="Digite el titulo" [formControl]="titulo">
+      <small *ngIf="titulo.errors?.['required'] && showError"><b> *Name is required.</b></small>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Cuerpo</label>
+      <input type="text" class="form-control" placeholder="Digite el cuerpo" [formControl]="cuerpo">
+      <small *ngIf="cuerpo.errors?.['required'] && showError"><b> *Name is required.</b></small>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Autor</label>
+      <input type="text" class="form-control" placeholder="Digite el autor" [formControl]="autor">
+      <small *ngIf="autor.errors?.['required'] && showError"><b> *Name is required.</b></small>
+    </div>
+
+    <br>
+    <button type="button" class="btn btn-primary" (click)="save()">{{btnTitle}}</button>
+  </div>
+</ng-template>
