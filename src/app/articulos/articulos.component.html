@@ -53,6 +53,13 @@
       <small *ngIf="cuerpo.errors?.['required'] && showError"><b> *Cuerpo es obligatorio.</b></small>
     </div>
 
+    <!-- 
+      Este código representa un fragmento de un template de Angular que muestra un campo de entrada de texto para "Autor" en un formulario.
+
+      El atributo "formControl" está vinculado a una propiedad "autor" del componente, lo que significa que la entrada del usuario en el campo de texto se actualizará automáticamente en la propiedad "autor" cuando cambie. El uso de formControl permite la validación y el seguimiento del estado del formulario de manera fácil y consistente.
+
+      Además, hay una etiqueta "label" para el campo de entrada, y un elemento "small" debajo de la entrada que muestra un mensaje de error si el campo es obligatorio y no se ha ingresado ningún valor. El mensaje de error solo se mostrará si la propiedad "showError" es verdadera y si el campo tiene un error "required".
+     -->
     <div class="form-group">
       <label for="exampleInputEmail1">Autor</label>
       <input type="text" class="form-control" placeholder="Digite el autor" [formControl]="autor">
